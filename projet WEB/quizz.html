@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz - Photographie</title>
+  <link rel="stylesheet" href="css.css"><link rel="stylesheet" href="css.css">
+</head>
+<body>
+     <header>
+        <h1 class="yahya">Yahya Ben Ameur</h1>
+        <div>
+        <nav class="center-container">
+            <ul>
+                <li><a href="parc.html">Parcours Académique</a></li> 
+                <li><a href="comp.html">Competences</a></li>
+                <li><a href="stage.html">Stages réalisés</a></li>
+                <li><a href="mani.html">Manifestations scientifiques</a></li>
+                <li><a href="aprop.html">À Propos de Moi</a></li>
+                <li><a href="cont.html">Contact</a></li>
+                <li><a href="accueil.html">Accueil</a></li>
+            </ul>
+        </nav>
+    </div>
+    </header>
+
+  <h1>Quiz sur la Photographie</h1>
+
+  <form id="quizForm">
+    <label for="q1">1. Qu'est-ce que l'ouverture (aperture) en photographie?</label>
+    <input type="radio" name="q1" value="a"> La durée d'exposition.
+    <input type="radio" name="q1" value="b"> La quantité de lumière qui atteint le capteur.
+    <input type="radio" name="q1" value="c"> La distance focale de l'objectif.
+    
+    <label for="q2">2. Qu'est-ce que la vitesse d'obturation?</label>
+    <input type="radio" name="q2" value="a"> La durée pendant laquelle l'obturateur de l'appareil est ouvert.
+    <input type="radio" name="q2" value="b"> Le contrôle de la sensibilité à la lumière de l'appareil.
+    <input type="radio" name="q2" value="c"> La distance entre l'objectif et le sujet.
+
+    <label for="q3">3. Quel est le rôle de l'ISO en photographie?</label>
+    <input type="radio" name="q3" value="a"> Contrôler la netteté de l'image.
+    <input type="radio" name="q3" value="b"> Ajuster la luminosité de l'image.
+    <input type="radio" name="q3" value="c"> Déterminer la sensibilité à la lumière du capteur.
+
+    <label for="q4">4. Qu'est-ce que la mise au point automatique (AF) sur un appareil photo?</label>
+    <input type="radio" name="q4" value="a"> La capacité de l'appareil à ajuster automatiquement l'exposition.
+    <input type="radio" name="q4" value="b"> La possibilité de l'appareil à stabiliser l'image.
+    <input type="radio" name="q4" value="c"> La capacité de l'appareil à ajuster automatiquement la netteté de l'image.
+
+    <label for="q5">5. Qu'est-ce que la profondeur de champ en photographie?</label>
+    <input type="radio" name="q5" value="a"> La zone nette de la photo, de l'avant-plan à l'arrière-plan.
+    <input type="radio" name="q5" value="b"> La quantité totale de lumière dans une photo.
+    <input type="radio" name="q5" value="c"> La distance entre l'appareil photo et le sujet.
+
+    <label for="q6">6. Qu'est-ce que le format RAW en photographie?</label>
+    <input type="radio" name="q6" value="a"> Un format compressé d'image.
+    <input type="radio" name="q6" value="b"> Un format non compressé qui préserve toutes les informations de l'image.
+    <input type="radio" name="q6" value="c"> Un format spécifique aux photos en noir et blanc.
+
+    <label for="q7">7. Qu'est-ce que la règle des tiers en composition photographique?</label>
+    <input type="radio" name="q7" value="a"> Une règle pour déterminer la résolution de l'image.
+    <input type="radio" name="q7" value="b"> Une règle pour diviser l'image en trois parties égales.
+    <input type="radio" name="q7" value="c"> Une règle pour ajuster la balance des couleurs.
+
+    <label for="q8">8. Qu'est-ce que le bokeh en photographie?</label>
+    <input type="radio" name="q8" value="a"> Un effet créatif obtenu en post-production.
+    <input type="radio" name="q8" value="b"> La zone floue dans une photo due à une faible profondeur de champ.
+    <input type="radio" name="q8" value="c"> Un type d'éclairage utilisé en studio.
+
+    <label for="q9">9. Que représente l'échelle des focales sur un objectif?</label>
+    <input type="radio" name="q9" value="a"> La distance maximale à laquelle l'objectif peut faire la mise au point.
+    <input type="radio" name="q9" value="b"> La plage de distances focales disponibles sur l'objectif.
+    <input type="radio" name="q9" value="c"> La taille physique de l'objectif.
+
+    <label for="q10">10. Qu'est-ce que le bracketing en photographie?</label>
+    <input type="radio" name="q10" value="a"> Un type de trépied utilisé pour stabiliser l'appareil photo.
+    <input type="radio" name="q10" value="b"> Une technique pour ajuster l'exposition en prenant plusieurs photos à des valeurs différentes.
+    <input type="radio" name="q10" value="c"> Un mode spécial de l'appareil photo pour la prise de vue de nuit.
+    </br>
+    <div class="container" >
+    <button type="button" onclick="calculateScore()">Valider</button>
+    </div>
+
+  <div id="result"></div>
+
+<script>
+  var answers = {
+    'q1': 'b',
+    'q2': 'a',
+    'q3': 'c',
+    'q4': 'c',
+    'q5': 'a',
+    'q6': 'b',
+    'q7': 'b',
+    'q8': 'b',
+    'q9': 'b',
+    'q10': 'b',
+  };
+
+  function calculateScore() {
+    var score = 0;
+    var correctQuestions = [];
+
+    for (var i = 1; i <= Object.keys(answers).length; i++) {
+      var selectedAnswer = document.querySelector('input[name="q' + i + '"]:checked');
+
+      if (selectedAnswer) {
+        if (selectedAnswer.value === answers['q' + i]) {
+          score++;
+          correctQuestions.push(i);
+        }
+      }
+    }
+
+    displayResults(score, correctQuestions);
+  }
+
+  function displayResults(score, correctQuestions) {
+    var resultHTML = '<h2>Résultats du Quiz</h2>';
+
+    if (correctQuestions.length > 0) {
+      resultHTML += '<p>Questions correctes: ' + correctQuestions.join(', ') + '</p>';
+    } else {
+      resultHTML += '<p>Aucune question correcte.</p>';
+    }
+
+    resultHTML += '<p>Total Score: ' + score + '/' + Object.keys(answers).length + '</p>';
+
+    document.getElementById('result').innerHTML = resultHTML;
+  }
+</script>
+<footer>
+        <p>&copy; 2023 Mon Site Web. Tous droits réservés. | Designed by Yahya Ben Ameur</p>
+    </footer>
+</body>
+</html>
